@@ -8,6 +8,7 @@ const MovieSchema = new Schema(
     release_date: { type: Date, require: true },
     runtime: { type: Number, require: true },
     GPA: { type: Number, default: 0 },
+    reservation: { type: Number, default: 0 },
   },
   { timestamp: true }
 );

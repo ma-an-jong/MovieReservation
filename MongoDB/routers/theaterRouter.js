@@ -8,4 +8,6 @@ router.post("/theater", async (req, res) => {
   return res.send({ theater });
 });
 
+router.get("/", async (req, res) => {});
+
 module.exports = router;

@@ -5,6 +5,7 @@ const CommentSchema = new Schema(
     context: { type: String, required: true },
     user: { type: Types.ObjectId, required: true, ref: "User" },
     movie: { type: Types.ObjectId, required: true, ref: "Movie" },
+    score: { type: Number, required: true },
     date: { type: Date, default: new Date() },
     likes: { type: Number, default: 0 },
   },

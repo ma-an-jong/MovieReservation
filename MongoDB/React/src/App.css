@@ -1,0 +1,260 @@
+.header {
+  width:100%;
+  height:113px;
+  background:#fff;
+  color:#666;
+  border-bottom: solid 1px #eee;
+}
+
+.logo {
+  padding-top:27px;
+}
+
+.logo span {
+  font-weight: 300;
+  font-size: 1.6em;
+  color: #222;
+  letter-spacing: 0.313em;
+  line-height: 1.500em;
+}
+
+.headerMenus {
+  padding-top:35px;
+}
+
+.hmList {
+  float:right;
+}
+
+.hmList ul {
+  float:left;
+  text-align:center;
+  margin-left:20px;
+}
+
+.hmList li {
+  font-size: 1.3em;
+  font-weight: 300;
+  color:#666;
+}
+
+.hmList li:first-child {
+  color:#333;
+}
+
+/* Nav */
+.mainNav {
+  height:50px;
+  color:#333;
+  border-bottom: solid 3px #fb4357;
+}
+
+.mainMenu {
+  line-height: 50px;
+}
+
+.mainMenu li {
+  float:left;
+  font-weight: 500;
+  font-size:1.6em;
+  margin-left:45px;
+  transition:all .3s;
+  cursor:pointer;
+}
+
+.mainMenu li:hover {
+  color:#fb4357;
+}
+
+.mainMenu li:first-child {
+  margin-left:0;
+}
+
+/* Visual */
+.visual {
+  width:100%;
+  height:500px;
+}
+
+.visual img {
+  width:100%;
+  height:500px;
+}
+
+/* movieChart */
+
+
+.mcTitleBar {
+  height:50px;
+  padding-top:30px;
+}
+
+.mcTitleBar * {
+  float:left;
+}
+
+.mcTitleBar h1 {
+  font-size:2.6em;
+  font-weight: 700;
+  color: #222;
+  
+}
+
+.mcTitleBar button {
+  float:right;
+  padding: 4px 15px 4px 15px;
+  font-size: 1.4em;
+  color: #222;
+  line-height: 1.429em;
+  border: 1px solid #e2e2e2;
+  border-radius: 15px;
+  box-shadow: 1px 1px 1px 0 rgb(0 0 0 / 5%);
+  background:#fff;
+  margin-top:20px;
+}
+
+
+/* movie */
+
+.movieRow_container {
+  width: 100%;
+  height: 380px;
+  overflow:hidden;
+  position:relative;
+  margin-top:30px;
+}
+
+.movieRow_background {
+  width: 200%;
+  height: 380px;
+}
+
+.movieCard_container {
+  width:175px;
+  height: auto;
+  float:left;
+}
+
+.movieCard {
+  position:relative;
+  width: 175px;
+  height: 234px;
+  border-radius: 10px;
+  transition: all .5s;
+  overflow:hidden;
+}
+
+.movieCard:hover .movieCardHover {
+  display: block;
+}
+
+.movieCard img {
+  width:100%;
+  height:100%;
+}
+
+.movieCard_container:not(:first-child) {
+  margin-left: 80px;
+}
+
+.movieCard:hover {
+  box-shadow: 3px 7px 10px #bbbbbb;
+}
+
+.chartNumber {
+  position:absolute;
+  left:3%;
+  bottom: -8.5%;
+  font-size: 6.0em;
+  color:#fff;
+  font-style: italic;
+  text-shadow: 3px 5px 7px #333;
+}
+
+.movieCardHover {
+  display:none;
+  position: absolute;
+  left:0;
+  top:0;
+  width: 175px;
+  height: 234px;
+  border-radius: 10px;
+  background:rgba(0,0,0,0.5);
+  text-align:center;
+}
+
+.movieCardHover ul {
+  margin-top:80px;
+}
+
+.movieCardHover li {
+  margin-top: 8px;
+}
+
+.movieCardHover button {
+  font-size:1.2em;
+  background:#fff;
+  border:none;
+  border-radius: 5px;
+  padding:8px 36px;
+  transition: all .3s;
+}
+
+.movieCardHover button:hover {
+  opacity: 0.8;
+  cursor:pointer;
+}
+
+.movieCardHover li:last-child button {
+  background:#fb4357;
+  color:#fff;
+}
+
+.movieCardInfo {
+  width: 100%;
+  text-align:center;
+}
+
+.movieCardInfo h3 {
+  padding-top: 12px;
+  font-size: 1.7em;
+  font-weight: normal;
+}
+
+.movieCardInfo p {
+  padding-top: 5px;
+  font-size: 1.4em;
+  color: #666;
+}
+
+.slideController div {
+  position: absolute;
+  top:25%;
+  float:left;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background:#fff;
+  opacity: .8;
+  text-align: center;
+  line-height:56px;
+  box-shadow: 1px 3px 5px #666;
+  transition: all .3s;
+}
+
+.slideController div:hover {
+  opacity: .9;
+  cursor:pointer;
+}
+
+.dn {
+  display: none;
+}
+
+.prev {
+  left: -25px;
+}
+
+.next {
+  right: 5px;
+}
