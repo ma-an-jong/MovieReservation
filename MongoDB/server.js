@@ -24,7 +24,7 @@ const server = async () => {
     await mongoose.connect(DB_URI);
     app.use(express.json());
     app.use(cors({ origin: "http://localhost:3000" }));
-    app.use(userRouter);
+    app.use("/user", userRouter);
     app.use(adminRouter);
     app.use("/theater", theaterRouter);
     app.use("/movie", movieRouter);
@@ -32,7 +32,7 @@ const server = async () => {
     app.use("/reservation", reservationRouter);
     //app.use("/grade", gradeRouter);
     app.use("/comment", commentRouter);
-    app.use(likeRouter);
+    app.use("/like", likeRouter);
 
     app.listen(port, hostname, function () {
       console.log("server is running");

@@ -51,4 +51,32 @@ router.get("/totalReservation/:showId", async (req, res) => {
   }
 });
 
+router.get("/totalReservation", async (req, res) => {
+  try {
+    const reservations = await Reservation.find({});
+
+    res.send({ remain: reservations.length });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ error: error.message });
+  }
+});
+
+router.delete("/:reservationId", async (req, res) => {
+  try {
+    const reservationId = req.params;
+
+    const reservation = await Reservation.findById({ reservationId });
+
+    if (!reservation) return res.status(404).send("reservation not found");
+
+    await Reservation.deleteOne({ _id: reservationId });
+
+    res.send({ reservation });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ error: error.message });
+  }
+});
+
 module.exports = router;
