@@ -14,7 +14,15 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const movies = await Movie.find({});
-    res.send(movies);
+
+    const response = movies.map((m) => ({
+      title: m.title,
+      image: m.image,
+      GPA: m.GPA,
+      reservation: m.reservation,
+    }));
+
+    res.send(response);
   } catch (error) {
     console.log(error);
     res.status(500).send({ error: error.message });

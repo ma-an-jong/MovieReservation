@@ -4,6 +4,7 @@ const ReservationSchema = new Schema(
   {
     user: { type: Types.ObjectId, required: true, ref: "User" },
     show: { type: Types.ObjectId, required: true, ref: "Show" },
+    theater: { type: Types.ObjectId, required: true, ref: "Theater" },
   },
   { timestamp: true }
 );

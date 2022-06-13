@@ -7,8 +7,10 @@ function Header(){
     return(
         <div>
             <div class="logo col-md-6 row">
-                <img src={process.env.PUBLIC_URL+"/img/logo.png"} alt="CGV" title="CGV" width="117px"/>
-                <span>CULTUREPLEX</span>
+                <a href="/"> 
+                    <img src={process.env.PUBLIC_URL+"/img/logo.png"} alt="CGV" title="CGV" width="117px"/>
+                    <span>CULTUREPLEX</span>
+                </a>
             </div>
             <div class="headerMenus col-md-6">
                 <div class="hmList">

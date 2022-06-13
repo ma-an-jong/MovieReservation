@@ -1,5 +1,5 @@
 import React from "react";
-import Movie from "./Movie";
+import MainMovieCard from "./MainMovieCard";
 
 // icons
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
@@ -17,7 +17,7 @@ const MovieRow = (props) => {
         <div className="movieRow_container">
             <div className="movieRow_background">
                 {props.movies.map((m, index) => (
-                    <Movie movieInfo={m} cardOrder={index} />
+                    <MainMovieCard movieInfo={m} cardOrder={index} />
                 ))}
             </div>
 

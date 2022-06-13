@@ -1,33 +1,25 @@
 import React from "react";
 
 const Movie = (props) => {
-  console.log(props.movieInfo.image);
   return (
-    <div className="movieCard_container">
-      <div className="movieCard" data-order={props.movieOrder}>
+    <div className="movie_movieCard">
+      <div className="movie_chartNumber">
+        <p>No.{props.cardOrder + 1}</p>
+      </div>
+      <div className="movie_movieImg">
         <img
           src={props.movieInfo.image}
           alt={props.movieInfo.title}
           title={props.movieInfo.title}
         />
-        <h1 className="chartNumber">{props.cardOrder + 1}</h1>
-        <div className="movieCardHover">
-          <ul>
-            <li>
-              <button>상세보기</button>
-            </li>
-            <li>
-              <button>예매하기</button>
-            </li>
-          </ul>
-        </div>
       </div>
-      <div className="movieCardInfo">
+      <div className="movie_movieInfo">
         <h3>{props.movieInfo.title}</h3>
         <p>
-          {props.movieInfo.GPA}% &nbsp; &nbsp; 예매율{" "}
-          {props.movieInfo.reservation}%
+          예매율 {props.movieInfo.reservation} &nbsp; {props.movieInfo.GPA}
         </p>
+        <p>개봉 날짜</p>
+        <button>예매하기</button>
       </div>
     </div>
   );

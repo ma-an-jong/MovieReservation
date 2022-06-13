@@ -5,12 +5,12 @@ function Nav(){
     return(
         <div class="mainMenu row">
             <ul>
-                {/* <Link to="/Movies"> */}
+                <Link to="/Movies" className="navMenu">
                     <li>영화</li>
-                {/* </Link> */}
-                {/* <Link to="/Theater"> */}
+                </Link>
+                <Link to="/Theater" className="navMenu">
                     <li>극장</li>
-                {/* </Link> */}
+                </Link>
             </ul>
         </div>  
     );

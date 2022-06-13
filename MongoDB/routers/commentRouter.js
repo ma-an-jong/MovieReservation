@@ -11,7 +11,10 @@ router.post("/", async (req, res) => {
 router.get("/:movieId", async (req, res) => {
   try {
     let { movieId } = req.params;
-    const comments = await Comment.find({ movie: movieId });
+    const comments = await Comment.find({ movie: movieId })
+      .populate({ path: "user" })
+      .populate({ path: "movie" });
+
     res.send(comments);
   } catch (error) {
     console.log(error);

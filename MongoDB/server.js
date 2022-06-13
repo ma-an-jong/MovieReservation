@@ -28,8 +28,8 @@ const server = async () => {
     app.use(adminRouter);
     app.use("/theater", theaterRouter);
     app.use("/movie", movieRouter);
-    app.use(showRouter);
-    app.use(reservationRouter);
+    app.use("/show", showRouter);
+    app.use("/reservation", reservationRouter);
     //app.use("/grade", gradeRouter);
     app.use("/comment", commentRouter);
     app.use(likeRouter);

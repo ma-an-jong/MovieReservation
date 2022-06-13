@@ -5,7 +5,8 @@ const ShowSchema = new Schema(
     time: { type: Date, required: true },
     screening_grade: { type: Number, required: true },
     movie: { type: Types.ObjectId, required: true, ref: "Movie" },
-    theater: { type: Types.ObjectId, required: true, ref: "Theater" },
+    floor: { type: Number, required: true },
+    reservations: { type: Number, default: 0 },
   },
   { timestamp: true }
 );
