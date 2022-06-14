@@ -27,6 +27,12 @@ img {
   margin:0 auto;
 }
 
+.underLine {
+  width:100%;
+  height: 1px;
+  background:#c8c8c8;
+}
+
 
 /* grid layout */
 .row {

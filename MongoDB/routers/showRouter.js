@@ -14,7 +14,9 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const shows = await Show.find({}).populate({ path: "movie" });
+    const shows = await Show.find({})
+      .populate({ path: "movie" })
+      .populate({ path: "" });
     return res.send(shows);
   } catch (error) {
     console.log(error);

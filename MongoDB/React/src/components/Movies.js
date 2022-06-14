@@ -1,32 +1,80 @@
-import React from "react";
+import { React, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import Movie from "./Movie";
+import MovieDetail from "./MovieDetail";
 
-const Movies = (props) => {
-    return(
-        <>
-            <div className="container">
+const Options = [
+  { key: 1, value: "예매율순" },
+  { key: 2, value: "평점순" },
+];
+
+function Movies(props) {
+  const [Content, setContent] = useState(1);
+  const [clickedMovie, setClickedMovie] = useState();
+
+  const onChangeHandler = (e) => {
+    setContent(Number(e.target.value));
+  };
+
+  var reservationArr = JSON.parse(JSON.stringify(props.movies));
+  reservationArr.sort((b, a) => a.reservation - b.reservation);
+
+  var gradeArr = JSON.parse(JSON.stringify(props.movies));
+  gradeArr.sort((b, a) => a.grade - b.grade);
+  //console.log(gradeArr);
+
+  const reserv = reservationArr.map((m, index) => (
+    <Movie movieInfo={m} cardOrder={index} setClickedMovie={setClickedMovie} />
+  ));
+
+  const grade = gradeArr.map((m, index) => (
+    <Movie movieInfo={m} cardOrder={index} setClickedMovie={setClickedMovie} />
+  ));
+
+  return (
+    <div>
+      <div className="container">
+        <Routes>
+          <Route
+            path=""
+            element={
+              <>
                 <div className="moviesTitle">
-                    <h2>무비차트</h2>
-                    <div></div>
+                  <h2>무비차트</h2>
+                  <div></div>
                 </div>
                 <div class="moviesMenu">
-                    <div>
-                        <select>
-                            <option value="reservation">예매율순</option>
-                            <option value="grade">평점순</option>
-                        </select>
-                        <button>GO</button>
-                    </div>
+                  <div>
+                    <select onChange={onChangeHandler} value={Content}>
+                      {Options.map((item) => (
+                        <option key={item.key} value={item.key}>
+                          {item.value}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
 
                 <div class="moviesContainer">
-                    {props.movies.map((m, index) => (
-                        <Movie movieInfo={m} cardOrder={index} />
-                    ))}
-                </div> 
-            </div>
-        </>
-    );
+                  {Content === 1 ? reserv : grade}
+                </div>
+              </>
+            }
+          />
+
+          <Route
+            path="/MovieDetail"
+            element={
+              <MovieDetail
+                movieData={props.movies}
+                clickedMovie={clickedMovie}
+              />
+            }
+          ></Route>
+        </Routes>
+      </div>
+    </div>
+  );
 }
 
 export default Movies;

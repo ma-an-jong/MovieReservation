@@ -1,7 +1,6 @@
 import React from "react";
 
-const Movie = (props) => {
-  console.log(props.movieInfo.image);
+const MainMovieCard = (props) => {
   return (
     <div className="movieCard_container">
       <div className="movieCard" data-order={props.movieOrder}>
@@ -33,4 +32,4 @@ const Movie = (props) => {
   );
 };
 
-export default Movie;
+export default MainMovieCard;
