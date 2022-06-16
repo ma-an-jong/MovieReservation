@@ -20,9 +20,15 @@ function Movies(props) {
   reservationArr.sort((b, a) => a.reservation - b.reservation);
 
   var gradeArr = JSON.parse(JSON.stringify(props.movies));
-  gradeArr.sort((b, a) => a.grade - b.grade);
+  gradeArr.sort((b, a) => {
+    if (a.GPA === b.GPA) {
+      return a.reservation - b.reservation;
+    } else {
+      return a.GPA - b.GPA;
+    }
+  });
   //console.log(gradeArr);
-
+  console.log(props.movies);
   const reserv = reservationArr.map((m, index) => (
     <Movie movieInfo={m} cardOrder={index} setClickedMovie={setClickedMovie} />
   ));
@@ -32,47 +38,35 @@ function Movies(props) {
   ));
 
   return (
-    <div>
-      <div className="container">
-        <Routes>
-          <Route
-            path=""
-            element={
-              <>
-                <div className="moviesTitle">
-                  <h2>무비차트</h2>
-                  <div></div>
+    <div className="container">
+      <Routes>
+        <Route
+          path=""
+          element={
+            <>
+              <div className="moviesTitle">
+                <h2>무비차트</h2>
+                <div></div>
+              </div>
+              <div class="moviesMenu">
+                <div>
+                  <select onChange={onChangeHandler} value={Content}>
+                    {Options.map((item) => (
+                      <option key={item.key} value={item.key}>
+                        {item.value}
+                      </option>
+                    ))}
+                  </select>
                 </div>
-                <div class="moviesMenu">
-                  <div>
-                    <select onChange={onChangeHandler} value={Content}>
-                      {Options.map((item) => (
-                        <option key={item.key} value={item.key}>
-                          {item.value}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
+              </div>
 
-                <div class="moviesContainer">
-                  {Content === 1 ? reserv : grade}
-                </div>
-              </>
-            }
-          />
-
-          <Route
-            path="/MovieDetail"
-            element={
-              <MovieDetail
-                movieData={props.movies}
-                clickedMovie={clickedMovie}
-              />
-            }
-          ></Route>
-        </Routes>
-      </div>
+              <div class="moviesContainer">
+                {Content === 1 ? reserv : grade}
+              </div>
+            </>
+          }
+        />
+      </Routes>
     </div>
   );
 }

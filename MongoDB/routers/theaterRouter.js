@@ -8,6 +8,21 @@ router.post("/", async (req, res) => {
   return res.send({ theater });
 });
 
+router.get("/:floor", async (req, res) => {
+  try {
+    let { floor } = req.params;
+
+    const theater = await Theater.find({
+      floor: floor,
+    });
+
+    res.send(theater);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ error: error.message });
+  }
+});
+
 router.get("/:floor/:seat", async (req, res) => {
   try {
     let { floor, seat } = req.params;

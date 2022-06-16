@@ -12,6 +12,16 @@ router.post("/", async (req, res) => {
   return res.send({ reservation });
 });
 
+router.post("/reservationShow", async (req, res) => {
+  const { context } = req.body;
+  for (let i = 0; i < context.length; i++) {
+    const reservation = new Reservation(context[i]);
+    await reservation.save();
+  }
+
+  return res.send({ context });
+});
+
 router.put("/:showId", async (req, res) => {
   const { showId } = req.params;
   let show = await Show.findOne({ _id: showId });
@@ -29,9 +39,40 @@ router.put("/:showId", async (req, res) => {
   return res.send(show);
 });
 
+router.get("/:showId", async (req, res) => {
+  const { showId } = req.params;
+  console.log(showId);
+  let show = await Reservation.find({ show: showId }).populate({
+    path: "theater",
+  });
+
+  return res.send(show);
+});
+
 router.get("/", async (req, res) => {
   try {
-    const reservations = await Reservation.find({});
+    const reservations = await Reservation.find({})
+      .populate({ path: "user" })
+      .populate({ path: "theater" })
+      .populate({ path: "show" });
+    res.send({ reservations });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ error: error.message });
+  }
+});
+
+router.get("/user/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const reservations = await Reservation.find({ user: userId })
+      .populate({ path: "theater" })
+      .populate({
+        path: "show",
+        populate: {
+          path: "movie",
+        },
+      });
     res.send({ reservations });
   } catch (error) {
     console.log(error);
@@ -64,9 +105,9 @@ router.get("/totalReservation", async (req, res) => {
 
 router.delete("/:reservationId", async (req, res) => {
   try {
-    const reservationId = req.params;
+    const { reservationId } = req.params;
 
-    const reservation = await Reservation.findById({ reservationId });
+    const reservation = await Reservation.findById(reservationId);
 
     if (!reservation) return res.status(404).send("reservation not found");
 

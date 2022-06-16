@@ -7,7 +7,7 @@ const Movie = (props) => {
       <div className="movie_chartNumber">
         <p>No.{props.cardOrder + 1}</p>
       </div>
-      <Link to="MovieDetail">
+      <Link to={`/MovieDetail/${props.movieInfo.id}`}>
         <div
           className="movie_movieImg"
           data-order={props.cardOrder}

@@ -16,6 +16,7 @@ router.get("/", async (req, res) => {
     const movies = await Movie.find({});
 
     const response = movies.map((m) => ({
+      id: m._id,
       title: m.title,
       image: m.image,
       GPA: m.GPA,

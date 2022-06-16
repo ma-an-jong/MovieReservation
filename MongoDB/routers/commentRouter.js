@@ -3,7 +3,8 @@ const router = express.Router();
 const { Comment } = require("../model/comment");
 
 router.post("/", async (req, res) => {
-  const comment = new Comment(req.body);
+  console.log(req.body);
+  const comment = new Comment(req.body.comment);
   await comment.save();
   return res.send({ comment });
 });

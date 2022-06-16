@@ -13,6 +13,9 @@ import Movies from "./components/Movies";
 import Theater from "./components/Theater";
 import EventChart from "./components/EventChart";
 import Reservation from "./components/Reservation";
+import MyPage from "./components/MyPage";
+import SeatSelectPage from "./components/SeatSelectPage";
+import MovieDetail from "./components/MovieDetail";
 
 const event1 = {
   name: "[마녀2]CGV 필름마크",
@@ -57,13 +60,22 @@ const eventArr = [event1, event2, event3, event4];
 
 function App() {
   const [movies, setMovies] = useState(false);
-  //const [theaters, setTheaters] = useState(false);
 
   useEffect(() => {
     axios
       .get("http://localhost:8800/movie")
       .then((res) => {
         setMovies(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const [shows, setShow] = useState(false);
+  useEffect(() => {
+    axios
+      .get("http://localhost:8800/show")
+      .then((res) => {
+        setShow(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -119,6 +131,17 @@ function App() {
           path="/Theater"
           element={<Reservation movies={movies} user={user} />}
         />
+        <Route exact path="/myPage" element={<MyPage user={user} />} />
+        <Route
+          exact
+          path="/SeatSelectPage/:select"
+          element={<SeatSelectPage user={user} shows={shows} />}
+        />
+
+        <Route
+          path="/MovieDetail/:movieId"
+          element={<MovieDetail movies={movies} user={user} />}
+        ></Route>
       </Routes>
     </div>
   );

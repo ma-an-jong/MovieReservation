@@ -1,44 +1,78 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Header from "./Header";
 import ReactiveHeader from "./ReactiveHeader";
+import { Link } from "react-router-dom";
 
 const Reservation = (props) => {
-  const [selectMovie, setSelectMovie] = useState(false);
-  const [selectShow, seatSelectShow] = useState(false);
+  const [shows, setShow] = useState(false);
+  const [movies, setMovie] = useState(false);
+  const [select, setSelect] = useState(false);
+
+  const onClickHandler = (e) => {
+    setSelect(e.currentTarget.dataset.value);
+    e.preventDefault();
+  };
+
+  const [time, setTime] = useState(false);
+
+  const onClickListener = (e) => {
+    setTime(e.currentTarget.dataset.value);
+    e.preventDefault();
+  };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8800/show")
+      .then((res) => {
+        const resMovie = [];
+        res.data.map((v) => {
+          let flag = false;
+          for (let i = 0; i < resMovie.length; i++) {
+            if (resMovie[i].title === v.movie.title) {
+              flag = true;
+              break;
+            }
+          }
+
+          if (!flag)
+            resMovie.push({
+              ...v.movie,
+              floor: v.floor,
+            });
+        });
+
+        setMovie(resMovie);
+        setShow(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className="reservation-page">
-      <div class="header col-md-12">
-        <div class="container">
-          <div class="longHeader">
-            <Header />
-          </div>
-          <div class="short">
-            <ReactiveHeader />
-          </div>
-        </div>
-      </div>
       <div className="reservation-select container">
         <div className="movie-select">
           <div className="select-head">
             <h3>영화</h3>
           </div>
           <div className="select-movie">
-            <div className="list">
-              {props.movies.map((m) => (
+            {movies ? (
+              <div className="list">
                 <ul>
-                  <li>
-                    <a
-                      title={m.title}
-                      alt={m.title}
-                      onclick={setSelectMovie(m)}
-                    >
-                      {m.title}
-                    </a>
-                  </li>
+                  {movies.map((m, index) => (
+                    <li>
+                      <a
+                        alt={m.title}
+                        onClick={onClickHandler}
+                        data-value={index}
+                      >
+                        {m.title}
+                      </a>
+                    </li>
+                  ))}
                 </ul>
-              ))}
-            </div>
+              </div>
+            ) : null}
           </div>
         </div>
         <div class="time-select">
@@ -53,15 +87,28 @@ const Reservation = (props) => {
             <div className="time-list">
               <div className="list-content">
                 <div className="theater-info">
-                  {/* <span className="dimenInfo">{props.demenInfo}</span>
-                  <span className="floorInfo">{props.floor}</span>
-                  <span className="seatCount">{props.seatCount}</span> */}
+                  {select ? (
+                    <div>
+                      <span className="floorInfo">
+                        상영관 : {movies[select].floor} 층
+                      </span>{" "}
+                      <br />
+                      <span className="seatCount">
+                        남은 좌석 :{" "}
+                        {Number(100) - Number(shows[select].reservations)}
+                      </span>
+                      <br />
+                      <span>
+                        <button onClick={onClickListener} data-value={0}>
+                          10:00
+                        </button>{" "}
+                        <button onClick={onClickListener} data-value={1}>
+                          13:00
+                        </button>
+                      </span>
+                    </div>
+                  ) : null}
                 </div>
-                {/* {props.timeList.map((m) => (
-                  <ul>
-                    <li>{m}</li>
-                  </ul>
-                ))} */}
               </div>
             </div>
           </div>
@@ -69,16 +116,18 @@ const Reservation = (props) => {
       </div>
       <div className="movie-reservation-info">
         <div className="banner">
-          {/* <div className="movie-info">
-            <div className="movie-poster">
-              <img
-                src={props.movies[0].image}
-                alt={props.movies[0].title}
-                title={props.movies[0].title}
-              ></img>
+          {select ? (
+            <div className="movie-info">
+              <div className="movie-poster">
+                <img
+                  src={movies[select].image}
+                  alt={movies[select].title}
+                  height="100px"
+                ></img>
+              </div>
+              <span className="movie-name">{movies[select].title}</span>
             </div>
-            <span className="movie-name">{props.movies[0].title}</span>
-          </div> */}
+          ) : null}
           <div className="select-info">
             <div className="select-theater">
               <span>극장</span>
@@ -88,17 +137,29 @@ const Reservation = (props) => {
               <span>일시</span>
               <span className="span-info">2022-06-16</span>
             </div>
-            <div className="select-room">
-              <span>상영관</span>
-              <span id="room" className="span-info"></span>
-            </div>
+            {select ? (
+              <div className="select-room">
+                <span>상영관</span>
+                <span id="room" className="span-info">
+                  {movies[select].floor} 층
+                </span>
+              </div>
+            ) : null}
           </div>
           <div className="step">
             <span className="seat-Select" title="좌석선택"></span>
             <span className="pay" title="결제"></span>
           </div>
+
           <div className="seatSelectBtn">
-            <a className="seatSelect"></a>
+            {time ? (
+              <Link to={`/SeatSelectPage/${select}`}>
+                <img className="seat-select-img" src="img/1.png"></img>
+              </Link>
+            ) : (
+              <img className="seat-select-img" src="img/2.png"></img>
+            )}
+            ;
           </div>
         </div>
       </div>

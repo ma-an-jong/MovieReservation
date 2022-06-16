@@ -5,7 +5,7 @@ const { Like } = require("../model/like");
 router.post("/", async (req, res) => {
   const like = new Like(req.body);
   await like.save();
-  return res.send({ like });
+  return res.send({ ...like, user_name: req.body.user.user_name });
 });
 
 router.get("/:commentId", async (req, res) => {

@@ -21,6 +21,12 @@ ReservationSchema.virtual("shows", {
   foreignField: "show",
 });
 
+ReservationSchema.virtual("theaters", {
+  ref: "Theater",
+  localField: "_id",
+  foreignField: "theater",
+});
+
 ReservationSchema.set("toObject", { virtuals: true });
 ReservationSchema.set("toJSON", { virtuals: true });
 

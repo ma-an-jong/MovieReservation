@@ -436,98 +436,6 @@
   display: none;
 }
 
-@media (max-width: 768px) {
-  .container {
-    width: 100%;
-    margin: 0 auto;
-  }
-  .longHeader {
-    display: none;
-  }
-  .reactive-header {
-    display: block;
-  }
-  .menu-bar {
-    display: block;
-    float: left;
-    margin: auto 6px;
-  }
-  .sidepanel {
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    height: 250px;
-    top: 110px;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-  }
-
-  .sidepanel a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: white;
-    display: block;
-    transition: 0.3s;
-  }
-
-  .sidepanel a:hover {
-    color: #f1f1f1;
-  }
-
-  .sidepanel .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-  }
-
-  .openbtn {
-    font-size: 20px;
-    cursor: pointer;
-    background-color: #111;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-  }
-
-  .openbtn:hover {
-    background-color: #444;
-  }
-  .movieRow_container {
-    display: flex;
-    height: 620px;
-  }
-
-  .movieCard_container {
-    max-width: 50%;
-    margin-top: 10px;
-  }
-  .movieCard_container:first-child {
-    margin-left: 80px;
-  }
-  .eventRow_container {
-    width: 120%;
-    height: 250px;
-    margin-bottom: 50px;
-    display: inline-block;
-  }
-  .eventCard_container {
-    margin-left: 30px;
-  }
-  .swiper-wrapper {
-    transition-duration: 300ms;
-    transform: translate3d(-700px, 0, 0);
-  }
-  .swiper-prev {
-    transition-duration: 300ms;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
 /* reservation */
 .reservation-select {
   height: 695px;
@@ -733,6 +641,7 @@
   background: url(http://img.cgv.co.kr/CGV_RIA/Ticket/image/reservation/tnb/tnb_steps.png)
     no-repeat 50% -190px;
 }
+
 .pay {
   width: 71px;
   height: 100%;
@@ -756,4 +665,368 @@
   overflow: hidden;
   text-indent: -1000px;
   background-position: -150px -220px;
+}
+/* MyPage */
+.myPageInfo {
+  width: 100%;
+  position: relative;
+}
+.member-info-container {
+  background-color: #e8e7e3;
+  height: 100px;
+  width: 100%;
+  position: absolute;
+  margin-top: 130px;
+}
+.member-info {
+  height: 100%;
+  width: 80%;
+  margin-left: 10%;
+}
+.member-name {
+  padding-top: 30px;
+  text-align: center;
+}
+.member-name span.name {
+  font-size: 3em;
+}
+.member-name span.memberId {
+  font-size: 2em;
+}
+.reservationList-container {
+  height: 200px;
+  width: 100%;
+  position: absolute;
+  margin-top: 250px;
+}
+.reservationList-container span {
+  font-size: 2em;
+}
+.reservationList {
+  border: 1px solid #666;
+  height: 130px;
+}
+.reservation-content {
+  margin-top: 10px;
+  margin-left: 10%;
+  line-height: 30px;
+}
+.nonNulllist a {
+  font-size: 2em;
+}
+#grid {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2vw;
+}
+#grid > div {
+  padding: 0.5em;
+  background: gold;
+  text-align: center;
+}
+
+.grid-img {
+  width: 500px;
+  height: 500px;
+}
+.grid-box {
+  display: block;
+}
+
+.grid-box > div > span {
+  border: 1px solid black;
+  width: 10px;
+  height: 10px;
+  text-align: center;
+}
+
+/* comment_section */
+.comment_section {
+  height: 500px;
+}
+
+.comment_form {
+  width: 100%;
+}
+
+.comment_form select {
+  padding: 13px 20px;
+  font-size: 1.4em;
+  border: solid 1px #c8c8c8;
+}
+
+.comment_form option {
+  font-size: 0.9em;
+}
+
+.comment_form input {
+  width: 74%;
+  height: 33px;
+  font-size: 1.6em;
+  padding: 8px 10px;
+  border: solid 1px #c8c8c8;
+  margin-left: 5px;
+}
+
+.comment_form button {
+  padding: 15.5px 14px;
+  background: #fb4357;
+  border: none;
+  color: #fff;
+  font-size: 1.4em;
+  margin-left: 5px;
+  float: right;
+}
+
+.comment_item {
+  min-height: 150px;
+  margin-top: 10px;
+  border: solid 1px #e5e5e5;
+}
+
+.comment_item div {
+  float: left;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+.comment_item div:first-child {
+  width: 15%;
+}
+
+.comment_item div:last-child {
+  width: 80%;
+}
+
+.comment_item_name p {
+  color: #666;
+  font-size: 1.4em;
+}
+
+.comment_item_name li {
+  color: #fb4357;
+  font-size: 3.5em;
+  line-height: 95px;
+}
+
+.comment_item_info li {
+  float: left;
+  color: #aaa;
+  font-size: 1.4em;
+}
+
+.comment_item_info li:nth-child(2) {
+  margin-top: 10px;
+}
+
+.comment_item_info li:nth-child(3) {
+  float: right;
+  margin-top: 10px;
+  color: #666;
+  cursor: pointer;
+}
+
+.like-active {
+  color: #fb4357;
+}
+
+.comment_item_info li:nth-child(3) span {
+  font-size: 1.6em;
+  color: #666;
+}
+
+.comment_item_info p {
+  color: #333;
+  font-size: 1.4em;
+  padding: 0 0 60px 0;
+}
+
+/* MovieDetail */
+.movieDetail {
+  width: 100%;
+  height: auto;
+}
+
+.DetailInfoSection {
+  margin-top: 50px;
+  height: 400px;
+}
+
+.detailImage {
+  float: left;
+}
+
+.detailImage img {
+  width: 100%;
+  height: auto;
+}
+
+.detail_title,
+.detail_detailInfo {
+  margin-left: 10px;
+}
+
+.detail_title {
+  width: 100%;
+  height: 80px;
+}
+
+.detail_title h2 {
+  font-weight: normal;
+  font-size: 3em;
+  color: #333;
+}
+
+.detail_title span {
+  color: #fb4357;
+  font-size: 1.3em;
+  border: solid 2px #fb4357;
+  padding: 3px 5px;
+  float: right;
+  margin-right: 12px;
+  margin-top: 25px;
+}
+
+.detail_title p {
+  font-size: 1.3em;
+  color: #666;
+  margin-top: 5px;
+  padding: 0 0 10px 0;
+}
+
+.detail_detailInfo {
+  margin-top: 20px;
+}
+
+.detail_detailInfo p {
+  color: #333;
+  margin-top: 5px;
+  font-size: 1.3em;
+}
+
+.detail_detailInfo button {
+  padding: 7px 17px;
+  background: #fb4357;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1.4em;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .longHeader {
+    display: none;
+  }
+  .reactive-header {
+    display: block;
+  }
+  .menu-bar {
+    display: block;
+    float: left;
+    margin-top: 35px;
+  }
+  .sidepanel {
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+
+  .sidepanel ul li {
+    text-decoration: none;
+    font-size: 2.2em;
+    color: #c8c8c8;
+    display: block;
+    transition: 0.3s;
+    padding: 10px 0 20px 30px;
+  }
+
+  .slideMenuEle {
+    margin-top: 50px;
+  }
+
+  .sidepanel li:hover {
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .sidepanel .closebtn {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 36px;
+  }
+
+  .openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+  }
+
+  .openbtn:hover {
+    background-color: #444;
+  }
+
+  .visual {
+    display: none;
+  }
+
+  .movieRow_container {
+    display: flex;
+    height: 675px;
+  }
+
+  .slideController {
+    display: none;
+  }
+
+  .movieCard_container {
+    max-width: 50%;
+    margin-top: 30px;
+  }
+  .movieCard_container:first-child {
+    margin-left: 80px;
+  }
+  .eventRow_container {
+    width: 100%;
+    height: 250px;
+    margin-bottom: 50px;
+    display: inline-block;
+  }
+  .eventCard_container {
+    margin-left: 0px;
+    width: 270px;
+  }
+
+  .eventCard_container div {
+    width: 100%;
+  }
+
+  .eventCard_container:not(:first-child) {
+    margin-left: 20px;
+  }
+
+  .swiper-wrapper {
+    transition-duration: 300ms;
+    transform: translate3d(-570px, 0, 0);
+  }
+  .swiper-prev {
+    transition-duration: 300ms;
+    transform: translate3d(0, 0, 0);
+  }
 }
